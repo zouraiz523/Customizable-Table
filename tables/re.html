@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customizable Table | Zouraiz</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body><div class="card">
+  <header>
+    <h2>Table</h2>
+    <div class="button-group">
+      <button id="add-row">Add Row</button>
+      <button id="add-column">Add Column</button>
+      <button id="delete-row">Delete Row</button>
+      <button id="delete-column">Delete Column</button>
+    </div>
+  
+  </header>
+  <table id="custom-table">
+    <thead>
+      <tr>
+        <th contenteditable="true">Name</th>
+        <th contenteditable="true">Age</th>
+        <th contenteditable="true">Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">Hans Müller</td>
+        <td contenteditable="true">35</td>
+        <td contenteditable="true">Manager</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Clara Schmidt</td>
+        <td contenteditable="true">28</td>
+        <td contenteditable="true">Senior Developer</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Lukas Fischer</td>
+        <td contenteditable="true">40</td>
+        <td contenteditable="true">Team Lead</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Sophie Wagner</td>
+        <td contenteditable="true">29</td>
+        <td contenteditable="true">Marketing Specialist</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Maximilian Braun</td>
+        <td contenteditable="true">45</td>
+        <td contenteditable="true">Operations Head</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Anna Weber</td>
+        <td contenteditable="true">32</td>
+        <td contenteditable="true">HR Coordinator</td>
+      </tr>
+      
+     
+  </table>
+  <div class="download-btn-group">
+    <button id="download-btn">Download as PDF</button>
+  </div>
+</div>
+
+
+  <!-- Include jsPDF library -->
+     <!-- Include jsPDF library -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+     <script src="main.js"></script> 
+  <script>const { jsPDF } = window.jspdf;
+    const table = document.getElementById("custom-table");
+    const thead = table.querySelector("thead");
+    const tbody = table.querySelector("tbody");
+    
+    // Add Column
+    document.getElementById("add-column").addEventListener("click", () => {
+      const columnName = prompt("Enter column name:", "New Column");
+      if (!columnName) return;
+    
+      // Add to thead
+      const newTh = document.createElement("th");
+      newTh.textContent = columnName;
+      newTh.contentEditable = "true"; // Make header editable
+      thead.rows[0].appendChild(newTh);
+    
+      // Add to tbody
+      Array.from(tbody.rows).forEach((row) => {
+        const td = document.createElement("td");
+        td.textContent = "New Data";
+        td.contentEditable = "true"; // Make cell editable
+        row.appendChild(td);
+      });
+    });
+    
+    // Add Row
+    document.getElementById("add-row").addEventListener("click", () => {
+      const newRow = document.createElement("tr");
+      Array.from(thead.rows[0].cells).forEach(() => {
+        const td = document.createElement("td");
+        td.contentEditable = "true";
+        td.textContent = "New Data";
+        newRow.appendChild(td);
+      });
+      tbody.appendChild(newRow);
+    });
+    
+    // Download as PDF
+    document.getElementById("download-btn").addEventListener("click", () => {
+      const doc = new jsPDF();
+    
+      // Get the editable heading (if exists)
+      const heading = document.querySelector("h2[contenteditable='true']");
+      if (heading) {
+        doc.setFontSize(16);
+        doc.text(heading.innerText, 10, 10);
+      }
+    
+      // Collect updated headers
+      const headers = Array.from(thead.rows[0].cells).map((th) => th.textContent);
+    
+      // Collect updated row data
+      const data = Array.from(tbody.rows).map((row) =>
+        Array.from(row.cells).map((cell) => cell.textContent)
+      );
+    
+      // Generate PDF with updated data
+      doc.autoTable({
+        head: [headers],
+        body: data,
+        startY: heading ? 20 : 10, // Adjust starting position based on heading
+      });
+    
+      // Save the PDF
+      doc.save("custom-table.pdf");
+    });
+    
+  </script>
+</body>
+</html>

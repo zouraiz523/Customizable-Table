@@ -1,0 +1,185 @@
+body {
+    background: #212122;
+    color: #000000;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .wrapper {
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+   
+  .card {
+    background: #acabab;
+    border-radius: 16px;
+    box-shadow: 1px 30px 40px rgb(97 102 120 / 12%);
+    padding: 24px;
+    font-size: 14px;
+    width: 500px;
+  }
+  
+  .card header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    border-radius: 6px;
+  }
+  
+  
+  .card h2 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .card table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .card table thead {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .card table th {
+    font-weight: 400;
+    padding: 0 10px;
+    user-select: none;
+    text-transform: capitalize;
+    background: #f4f3f6;
+    color: rgb(97 102 120 / 75%);
+  }
+  
+  .card table :is(th, td) {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 32px;
+    border: 2px solid #e9e5f3ea;
+  }
+  
+  .card table .cell-content {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    translate: 0 -50%;
+  }
+  
+  .card table th .draggable {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 6px;
+    cursor: col-resize;
+  }
+  td[contenteditable="true"] {
+    background-color: #e7f3fe;
+    cursor: text;
+  }
+
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 30px 40px rgb(97 102 120 / 12%);
+  padding: 24px;
+  font-size: 14px;
+  width: 500px;
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+/* General Card Styling */
+.card {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Card shadow */
+  background: #ffffff;
+}
+
+.card header {
+  text-align: center; /* Center align header */
+  margin-bottom: 10px;
+}
+
+/* Styling for the button group */
+.button-group {
+  display: flex;
+  justify-content: center; /* Center align buttons */
+  gap: 6px; /* Add space between buttons */
+  margin-bottom: 7px; /* Space between button group and other elements */
+}
+
+.button-group button,
+.download-btn-group button {
+  font-family: inherit;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Slightly rounded corners */
+  padding: 4px 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.button-group button:hover,
+.download-btn-group button:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Inverse gradient on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Specific Styling for the Download button */
+.download-btn-group {
+  display: flex;
+  justify-content: center; /* Center align the button */
+  margin-top: 7px; /* Add space above the button */
+}
+
+.download-btn-group button {
+  padding: 6px 14px; /* Slightly larger button */
+  font-weight: bold; /* Make text bold */
+}
+
+.wrapper {
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+th, td {
+  border: 2px solid #000000;
+  padding: 8px;
+}
+
+th {
+  background-color: #f4f3f6;
+  font-weight: 600;
+}
+
+td[contenteditable="true"] {
+  background-color: #e7f3fe;
+  cursor: text;
+}
